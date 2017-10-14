@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Arne Govaerts &#128122;</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<style type="text/css">
+		body{
+			font-size: x-large;
+			font-family: "Lucida Console", Monaco, monospace;
+		}
+		#content {
+		  position: fixed; /* or absolute */
+		  top: 50%;
+		  left: 50%;
+		  font-size: xx-large;
+		  font-family: "Lucida Console", Monaco, monospace;
+		}
+		.painting{
+			bottom:0;
+			float:left;
+			letter-spacing: 10px;
+		}
+		
+		::-webkit-scrollbar { 
+			display: none;
+		}
+		html{
+			height:100%;
+			animation: pulse 5s infinite;
+			-ms-overflow-style:none;
+		}
+		
+		@keyframes pulse {
+			0% {
+				background-color: #e0ded9;
+			}
+			33% {
+				background-color: #eae8e3;
+			}
+			66% {
+				background-color: #e8decc;
+			}
+			100% {
+				background-color: #e0ded9;
+			}
+		}
+		.persona{
+			float:right;
+			margin:5%;
+		}
+		@-moz-document url-prefix() {
+			
+		}
+		a,p,div,html{
+				/* cursor: url("http://i64.tinypic.com/29bg6x3.png"),auto; */
+				cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E %3Ctext x='0' y='35' font-family='Verdana' font-size='27'%3E&%23128122;%3C/text%3E %3C/svg%3E"), auto;
+			}
+		a{
+			color:black;
+		}
+		a:hover{
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+
+<body>
+
+	<p class="persona"><a href="mailto:arne.govaerts@telenet.be" rel="nofollow">Mail</a> | <a href="https://twitter.com/argovaerts" target="_blank">Twitter</a> | <a href="https://telegram.me/argovaerts" rel="nofollow" target="_blank">Telegram</a></p>
+	<div class="art" id="art"></div>
+	<div id="content"><noscript>I'm Arne.</noscript></div>
+
+<script>
+var art = ["/","−","\\","|"];
+var text = ["Arne","an IT student","19","a Ghentian","a BESTie"," a scuba diver"];
+var i = 0;
+var j = 0;
+
+initDivs(((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) < 500) ? 5 : 20);
+window.setInterval(run, 200);
+
+function run(){
+	addArt();
+	changeText();
+}
+
+function changeText(){
+	var content = document.getElementById("content");
+    content.innerHTML = "I'm "+text[j]+".";
+	if(j<text.length-1)j++;
+    else j=0;
+    document.getElementById("content").scrollIntoView();
+}
+
+function addArt() {
+	var painting = document.getElementsByClassName("painting");
+    if(window.innerHeight-50 > painting[0].scrollHeight){
+		for(var count=0;count<painting.length;count++){
+			painting[count].innerHTML += art[i]+"<br>";
+		}
+		if(i<art.length-1)i++;
+		else i=0;
+	}
+	/*else{
+		for(var count=0;count<painting.length;count++){
+			painting[count].innerHTML = "";
+		}
+	}*/
+}
+
+function initDivs(x){
+	for(var count=0;count<x;count++){
+		document.getElementById("art").innerHTML += "<div class='painting'></div>";
+	}
+}
+</script>
+
+</body>
+</html>
