@@ -7,14 +7,14 @@
 	
 	<style type="text/css">
 		body{
-			font-size: x-large;
+			font-size: large;
 			font-family: "Lucida Console", Monaco, monospace;
 		}
 		#content {
 		  position: fixed; /* or absolute */
 		  top: 50%;
 		  left: 50%;
-		  font-size: xx-large;
+		  font-size: x-large;
 		  font-family: "Lucida Console", Monaco, monospace;
 		}
 		.painting{
@@ -63,11 +63,41 @@
 		a:hover{
 			text-decoration: line-through;
 		}
+		
+		.img-fly{
+			position: fixed;
+			top: 40%;
+			left: 100%;
+			width: 175px;
+			height: 262px;
+			background: url(https://raw.githubusercontent.com/argovaerts/argovaerts.github.io/master/Robert_Delaunay_-_Le_Po%C3%A8te_Philippe_Soupault.jpg);
+			background-size: 100% 100%;
+			-webkit-animation: fly 7s linear infinite;
+			animation: fly 7s linear infinite;
+			-webkit-filter: hue-rotate(90deg);
+			filter: hue-rotate(90deg);
+			border-radius: 25px;
+		}
+		@-webkit-keyframes fly {
+			0% { left: 100%; }
+			70% { left: -175px; -webkit-transform: rotate(360deg); }
+			100% { left: -175px; }
+		}
+		@keyframes fly {
+			0% { left: 100%; }
+			70%{ left: -300px; -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+			100% { left: -300px; }
+		}
+		@-moz-keyframes fly {
+			0% { left: 100%; }
+			70%, 100% { left: -300px; -moz-transform: rotate(360deg);}
+			100% { left: -300px; }
+		}
 	</style>
 </head>
 
 <body>
-
+	<div class="img-fly"></div>
 	<p class="persona"><a href="mailto:arne.govaerts@telenet.be" rel="nofollow">Mail</a> | <a href="https://twitter.com/argovaerts" target="_blank">Twitter</a> | <a href="https://telegram.me/argovaerts" rel="nofollow" target="_blank">Telegram</a></p>
 	<div class="art" id="art"></div>
 	<div id="content"><noscript>I'm Arne.</noscript></div>
@@ -78,7 +108,7 @@ var text = ["Arne","an IT student","19","a Ghentian","a BESTie"," a scuba diver"
 var i = 0;
 var j = 0;
 
-initDivs(((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) < 500) ? 5 : 20);
+initDivs(((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) < 500) ? 3 : 20);
 window.setInterval(run, 200);
 
 function run(){
@@ -96,7 +126,7 @@ function changeText(){
 
 function addArt() {
 	var painting = document.getElementsByClassName("painting");
-    if(window.innerHeight-50 > painting[0].scrollHeight){
+    if(window.innerHeight*0.7 > painting[0].scrollHeight){
 		for(var count=0;count<painting.length;count++){
 			painting[count].innerHTML += art[i]+"<br>";
 		}
